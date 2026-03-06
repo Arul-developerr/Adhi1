@@ -513,4 +513,4 @@ export function getTotalInventory(): BloodInventory {
     return total
 }
 
-export const tnDistricts = [...new Set(tnHospitals.map(h => h.district))]
+export const tnDistricts = Array.from(new Set(tnHospitals.map(h => h.district)))

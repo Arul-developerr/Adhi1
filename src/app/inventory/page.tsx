@@ -59,7 +59,7 @@ export default function RealTimeInventory() {
                     key,
                     Math.max(0, val + Math.floor(Math.random() * 10) - 5)
                 ])
-            ) as BloodInventory
+            ) as unknown as BloodInventory
         }))
         setHospitals(filtered)
     }, [filterDistrict, filterType, tick])
