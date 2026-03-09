@@ -52,7 +52,6 @@ export default function RegisterDonar() {
     return (
         <PageTransition>
             <div className="container mx-auto px-4 py-20 min-h-screen flex items-center justify-center relative">
-                {/* Background glow */}
                 <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[500px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
 
                 <div className="w-full max-w-xl relative hidden md:block z-0 mb-auto mt-20 absolute top-0 text-center text-muted-foreground">

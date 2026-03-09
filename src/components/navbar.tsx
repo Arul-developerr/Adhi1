@@ -66,7 +66,6 @@ export function Navbar() {
                     </div>
                 </Link>
 
-                {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center gap-5">
                     {mainLinks.map((link) => (
                         <Link
@@ -88,7 +87,6 @@ export function Navbar() {
                         </Link>
                     ))}
 
-                    {/* Features Dropdown */}
                     <div className="relative"
                         onMouseEnter={() => setFeaturesOpen(true)}
                         onMouseLeave={() => setFeaturesOpen(false)}
@@ -150,7 +148,6 @@ export function Navbar() {
                     </Button>
                 </nav>
 
-                {/* Mobile Menu Toggle */}
                 <div className="flex md:hidden items-center gap-4">
                     <Button
                         variant="ghost"
@@ -168,7 +165,6 @@ export function Navbar() {
                 </div>
             </div>
 
-            {/* Mobile Nav */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div

@@ -81,7 +81,6 @@ export default function AIPredictions() {
                     </p>
                 </motion.div>
 
-                {/* Summary Stats */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -109,7 +108,6 @@ export default function AIPredictions() {
                 </motion.div>
 
                 <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    {/* Demand vs Supply Chart */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -142,7 +140,6 @@ export default function AIPredictions() {
                         </div>
                     </motion.div>
 
-                    {/* Seasonal Pattern */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -167,7 +164,6 @@ export default function AIPredictions() {
                     </motion.div>
                 </div>
 
-                {/* Zone-wise Heatmap Table */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -228,7 +224,6 @@ export default function AIPredictions() {
                     </div>
                 </motion.div>
 
-                {/* Selected Zone Detail */}
                 {selectedZone && (
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -266,7 +261,6 @@ export default function AIPredictions() {
                     </motion.div>
                 )}
 
-                {/* District Demand Comparison */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

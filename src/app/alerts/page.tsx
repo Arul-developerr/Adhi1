@@ -70,7 +70,7 @@ export default function EmergencyAlerts() {
         message: "",
     })
 
-    // Simulate new alerts arriving
+
     useEffect(() => {
         const interval = setInterval(() => {
             const randomEvents = [
@@ -129,7 +129,6 @@ export default function EmergencyAlerts() {
             <div className="container mx-auto px-4 py-20 min-h-screen relative">
                 <div className="fixed top-1/3 left-1/3 w-[500px] h-[500px] bg-orange-600/5 rounded-full blur-[150px] pointer-events-none" />
 
-                {/* Toast notification */}
                 <AnimatePresence>
                     {toastMessage && (
                         <motion.div
@@ -160,7 +159,6 @@ export default function EmergencyAlerts() {
                     </p>
                 </motion.div>
 
-                {/* Stats bar */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -187,7 +185,6 @@ export default function EmergencyAlerts() {
                 </motion.div>
 
                 <div className="max-w-5xl mx-auto">
-                    {/* Action bar */}
                     <div className="flex justify-between items-center mb-6">
                         <h2 className="text-xl font-bold flex items-center gap-2">
                             <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
@@ -198,7 +195,6 @@ export default function EmergencyAlerts() {
                         </Button>
                     </div>
 
-                    {/* Send Alert Form */}
                     <AnimatePresence>
                         {showForm && (
                             <motion.div
@@ -255,7 +251,6 @@ export default function EmergencyAlerts() {
                         )}
                     </AnimatePresence>
 
-                    {/* Alert Feed */}
                     <div className="space-y-4">
                         <AnimatePresence>
                             {alerts.map((alert, i) => (

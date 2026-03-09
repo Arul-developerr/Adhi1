@@ -1,4 +1,4 @@
-"use client"
+
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
@@ -58,7 +58,6 @@ export default function Dashboard() {
                     </div>
                 </div>
 
-                {/* Stats Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 mt-10">
                     {[
                         { label: "Active Donors", value: activeDonors.toLocaleString(), icon: Users, color: "text-blue-500" },
@@ -84,10 +83,8 @@ export default function Dashboard() {
                     ))}
                 </div>
 
-                {/* Charts & Tables */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-                    {/* Main Chart */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -122,7 +119,6 @@ export default function Dashboard() {
                         </div>
                     </motion.div>
 
-                    {/* Right Column Alerts + Recent */}
                     <div className="flex flex-col gap-6">
 
                         <motion.div
@@ -182,7 +178,6 @@ export default function Dashboard() {
                     </div>
                 </div>
 
-                {/* Quick Links to Features */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}

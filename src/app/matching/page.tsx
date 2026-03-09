@@ -63,7 +63,6 @@ export default function AutomatedMatching() {
     return (
         <PageTransition>
             <div className="container mx-auto px-4 py-20 min-h-screen relative">
-                {/* Animated background */}
                 <div className="fixed top-1/3 left-1/4 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[150px] pointer-events-none animate-pulse" />
                 <div className="fixed bottom-1/3 right-1/4 w-[400px] h-[400px] bg-rose-600/5 rounded-full blur-[120px] pointer-events-none" />
 
@@ -84,7 +83,6 @@ export default function AutomatedMatching() {
                 </motion.div>
 
                 <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto relative z-10">
-                    {/* Left: Control Panel */}
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -149,7 +147,6 @@ export default function AutomatedMatching() {
                             )}
                         </div>
 
-                        {/* Compatibility Matrix */}
                         <div className="mt-8">
                             <h3 className="text-lg font-bold mb-4">Blood Compatibility Matrix</h3>
                             <div className="overflow-x-auto">
@@ -184,7 +181,6 @@ export default function AutomatedMatching() {
                         </div>
                     </motion.div>
 
-                    {/* Right: Results */}
                     <motion.div
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -217,7 +213,6 @@ export default function AutomatedMatching() {
                                     exit={{ opacity: 0, scale: 0.95 }}
                                     className="h-full flex flex-col items-center justify-center p-12 rounded-3xl glass-card relative overflow-hidden min-h-[500px]"
                                 >
-                                    {/* Radar effect */}
                                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                                         {[0, 0.5, 1].map((delay) => (
                                             <motion.div

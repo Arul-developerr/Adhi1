@@ -77,7 +77,6 @@ export default function RealTimeInventory() {
                     </p>
                 </motion.div>
 
-                {/* Filters */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -107,7 +106,6 @@ export default function RealTimeInventory() {
                     </div>
                 </motion.div>
 
-                {/* Overview Chart */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -133,7 +131,6 @@ export default function RealTimeInventory() {
                     </div>
                 </motion.div>
 
-                {/* Hospital Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
                     {hospitals.map((hospital, i) => (
                         <motion.div

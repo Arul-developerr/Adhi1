@@ -1,5 +1,3 @@
-// Namakkal District Government & Private Blood Bank Data
-// Smart Blood Bank Management System
 
 export interface Hospital {
     id: string
@@ -64,11 +62,7 @@ export interface PredictionZone {
     season: string
 }
 
-// ──────────────────────────────────────────────
-// Namakkal District Blood Banks
-// ──────────────────────────────────────────────
 export const tnHospitals: Hospital[] = [
-    // Government Blood Banks
     {
         id: "gov-01",
         name: "Govt. Headquarters Hospital Blood Bank",
@@ -109,7 +103,6 @@ export const tnHospitals: Hospital[] = [
         inventory: { "A+": 60, "A-": 7, "B+": 50, "B-": 6, "O+": 88, "O-": 10, "AB+": 18, "AB-": 3 }
     },
 
-    // Private & Voluntary Blood Banks
     {
         id: "pvt-01",
         name: "Vivekananda Blood Bank",
@@ -152,9 +145,6 @@ export const tnHospitals: Hospital[] = [
     },
 ]
 
-// ──────────────────────────────────────────────
-// Namakkal District Donors
-// ──────────────────────────────────────────────
 export const tnDonors: Donor[] = [
     { id: "D001", name: "Senthil Kumar R.", bloodGroup: "O+", city: "Namakkal", district: "Namakkal", phone: "+91 94430 XXXXX", lastDonation: "2025-11-15", isAvailable: true, rating: 4.9, distance: "1.5 km", eta: "6 mins" },
     { id: "D002", name: "Kavitha Devi M.", bloodGroup: "A+", city: "Namakkal", district: "Namakkal", phone: "+91 97890 XXXXX", lastDonation: "2025-10-20", isAvailable: true, rating: 5.0, distance: "2.2 km", eta: "9 mins" },
@@ -166,9 +156,6 @@ export const tnDonors: Donor[] = [
     { id: "D008", name: "Deepika Sundaram V.", bloodGroup: "O+", city: "Mohanur", district: "Namakkal", phone: "+91 97860 XXXXX", lastDonation: "2025-08-22", isAvailable: true, rating: 4.8, distance: "8.5 km", eta: "28 mins" },
 ]
 
-// ──────────────────────────────────────────────
-// Emergency Alerts — Namakkal District
-// ──────────────────────────────────────────────
 export const tnAlerts: EmergencyAlert[] = [
     {
         id: "ALT-001",
@@ -268,9 +255,6 @@ export const tnAlerts: EmergencyAlert[] = [
     },
 ]
 
-// ──────────────────────────────────────────────
-// AI Prediction Zone Data — Namakkal Sub-Zones
-// ──────────────────────────────────────────────
 export const tnPredictionZones: PredictionZone[] = [
     { district: "Namakkal Town", currentDemand: 420, predictedDemand: 510, changePercent: 21.4, riskLevel: "high", topShortage: "O-", season: "Festival" },
     { district: "Tiruchengode", currentDemand: 310, predictedDemand: 380, changePercent: 22.6, riskLevel: "critical", topShortage: "AB-", season: "Monsoon" },
@@ -279,9 +263,6 @@ export const tnPredictionZones: PredictionZone[] = [
     { district: "Mohanur", currentDemand: 100, predictedDemand: 110, changePercent: 10.0, riskLevel: "medium", topShortage: "A-", season: "Normal" },
 ]
 
-// ──────────────────────────────────────────────
-// Monthly trend data for charts
-// ──────────────────────────────────────────────
 export const monthlyTrendData = [
     { month: "Jan", demand: 520, supply: 560, donations: 150 },
     { month: "Feb", demand: 480, supply: 510, donations: 140 },
@@ -297,9 +278,6 @@ export const monthlyTrendData = [
     { month: "Dec", demand: 650, supply: 640, donations: 180 },
 ]
 
-// ──────────────────────────────────────────────
-// Blood compatibility matrix
-// ──────────────────────────────────────────────
 export const bloodCompatibility: Record<string, string[]> = {
     "O-": ["O-", "O+", "A-", "A+", "B-", "B+", "AB-", "AB+"],
     "O+": ["O+", "A+", "B+", "AB+"],
@@ -311,9 +289,6 @@ export const bloodCompatibility: Record<string, string[]> = {
     "AB+": ["AB+"],
 }
 
-// ──────────────────────────────────────────────
-// Helper functions
-// ──────────────────────────────────────────────
 export function getHospitalsByDistrict(district: string): Hospital[] {
     return tnHospitals.filter(h => h.district === district)
 }

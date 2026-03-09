@@ -57,7 +57,6 @@ export default function Home() {
         <PageTransition>
             <div className="flex flex-col gap-24 pb-20 overflow-hidden relative">
 
-                {/* HERO SECTION */}
                 <section className="relative pt-20 lg:pt-32 min-h-[90vh] flex items-center justify-center">
                     <motion.div
                         style={{ y: y1 }}
@@ -131,7 +130,6 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* LIVE STOCK METRICS */}
                 <section className="container mx-auto px-4 relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
@@ -161,7 +159,6 @@ export default function Home() {
                     </motion.div>
                 </section>
 
-                {/* FEATURES - Now with links to functional pages */}
                 <section className="container mx-auto px-4">
                     <div className="text-center mb-16">
                         <motion.div
@@ -206,7 +203,6 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* PARTNER HOSPITALS MARQUEE */}
                 <section className="container mx-auto px-4">
                     <div className="text-center mb-8">
                         <h2 className="text-2xl md:text-3xl font-bold mb-2">Trusted by Namakkal District Blood Banks</h2>
@@ -228,13 +224,11 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* HOW IT WORKS TIMELINE */}
                 <section className="container mx-auto px-4 py-12 relative">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-5xl font-bold mb-4">How It Works</h2>
                     </div>
                     <div className="max-w-4xl mx-auto relative hidden md:block">
-                        {/* Connecting line */}
                         <div className="absolute top-1/2 left-0 right-0 h-1 bg-border -translate-y-1/2 rounded-full overflow-hidden">
                             <motion.div
                                 initial={{ width: 0 }}
@@ -262,7 +256,6 @@ export default function Home() {
                             ))}
                         </div>
                     </div>
-                    {/* Mobile view timeline */}
                     <div className="md:hidden flex flex-col gap-8 items-center border-l-2 border-primary/30 pl-8 ml-4 relative">
                         {["Register Profile", "Notification Match", "Donate Blood", "Save a Life"].map((step, i) => (
                             <div key={i} className="relative w-full">

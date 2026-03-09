@@ -49,7 +49,7 @@ export function BackgroundParticles() {
                 if (!ctx) return
                 ctx.beginPath()
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-                ctx.fillStyle = `rgba(185, 28, 28, ${this.opacity})` // base blood red
+                ctx.fillStyle = `rgba(185, 28, 28, ${this.opacity})`
                 ctx.fill()
             }
         }

@@ -50,7 +50,6 @@ export default function RequestBlood() {
         e.preventDefault()
         setStatus("searching")
 
-        // Simulate AI Search Time
         setTimeout(() => {
             setStatus("found")
         }, 4500)
@@ -67,7 +66,6 @@ export default function RequestBlood() {
                 </div>
 
                 <div className="w-full max-w-4xl grid md:grid-cols-2 gap-8 relative z-10">
-                    {/* LEFT: Request Form */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -129,7 +127,6 @@ export default function RequestBlood() {
                         </form>
                     </motion.div>
 
-                    {/* RIGHT: Results / Loading */}
                     <div className="relative">
                         <AnimatePresence mode="wait">
                             {status === "idle" && (
@@ -153,7 +150,6 @@ export default function RequestBlood() {
                                     exit={{ opacity: 0, scale: 0.9 }}
                                     className="h-full flex flex-col items-center justify-center p-8 rounded-2xl glass-card relative overflow-hidden"
                                 >
-                                    {/* Radar effect */}
                                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                                         <motion.div
                                             animate={{ scale: [1, 2, 3], opacity: [0.8, 0.4, 0] }}
