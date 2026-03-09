@@ -33,21 +33,19 @@ function Counter({ end, suffix = "" }: { end: number, suffix?: string }) {
 }
 
 const features = [
-    { title: "Automated Matching", desc: "Instantly pairs compatible donors with critical patients using spatial proximity across Tamil Nadu.", icon: Activity, href: "/matching", color: "from-red-600 to-rose-500" },
-    { title: "Real-Time Inventory", desc: "Live integration with 20+ blood banks ensuring accurate unit availability across all districts.", icon: Droplet, href: "/inventory", color: "from-blue-600 to-cyan-500" },
-    { title: "Emergency Alerts", desc: "Push notifications via SMS & App for high-urgency requirements to hospitals statewide.", icon: Bell, href: "/alerts", color: "from-orange-600 to-amber-500" },
-    { title: "AI Demand Prediction", desc: "Machine learning models forecasting seasonal shortages in 12+ Tamil Nadu zones.", icon: Brain, href: "/predictions", color: "from-purple-600 to-violet-500" }
+    { title: "Automated Matching", desc: "Instantly pairs compatible donors with critical patients using spatial proximity across Namakkal District.", icon: Activity, href: "/matching", color: "from-red-600 to-rose-500" },
+    { title: "Real-Time Inventory", desc: "Live integration with 6 blood banks ensuring accurate unit availability across Namakkal District.", icon: Droplet, href: "/inventory", color: "from-blue-600 to-cyan-500" },
+    { title: "Emergency Alerts", desc: "Push notifications via SMS & App for high-urgency requirements to Namakkal hospitals & blood banks.", icon: Bell, href: "/alerts", color: "from-orange-600 to-amber-500" },
+    { title: "AI Demand Prediction", desc: "Machine learning models forecasting seasonal shortages across 5 Namakkal District zones.", icon: Brain, href: "/predictions", color: "from-purple-600 to-violet-500" }
 ]
 
 const partnerHospitals = [
-    "Rajiv Gandhi GGH, Chennai",
-    "Apollo Hospitals, Chennai",
-    "CMC Vellore",
-    "Govt. Rajaji Hospital, Madurai",
-    "Kauvery Hospital, Trichy",
-    "PSG Hospitals, Coimbatore",
-    "MIOT International, Chennai",
-    "Meenakshi Mission, Madurai",
+    "Govt. HQ Hospital Blood Bank, Namakkal",
+    "Govt. Hospital, Tiruchengode",
+    "Govt. Hospital, Rasipuram",
+    "Vivekananda Blood Bank, Tiruchengode",
+    "Shharc Charity Blood Bank, Namakkal",
+    "Bharath Clinical Lab & Blood Bank, Namakkal",
 ]
 
 export default function Home() {
@@ -88,7 +86,7 @@ export default function Home() {
                             className="mb-4"
                         >
                             <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-medium">
-                                <Building2 className="w-4 h-4" /> Government of Tamil Nadu Initiative
+                                <Building2 className="w-4 h-4" /> Namakkal District Healthcare Initiative
                             </span>
                         </motion.div>
 
@@ -108,7 +106,7 @@ export default function Home() {
                             transition={{ delay: 0.3 }}
                             className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10"
                         >
-                            A futuristic platform connecting donors to patients across Tamil Nadu in real-time. Serving 20+ government & private hospitals with automated matchmaking, AI prediction, and zero wastage.
+                            A futuristic platform connecting donors to patients across Namakkal District in real-time. Serving 6 government & private blood banks with automated matchmaking, AI prediction, and zero wastage.
                         </motion.p>
 
                         <motion.div
@@ -142,10 +140,10 @@ export default function Home() {
                         className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8"
                     >
                         {[
-                            { label: "Active Donors", val: 15420, icon: <Heart className="w-6 h-6 text-primary" /> },
-                            { label: "Lives Saved", val: 42890, icon: <Activity className="w-6 h-6 text-emerald-500" /> },
-                            { label: "TN Hospitals", val: 20, icon: <Building2 className="w-6 h-6 text-blue-500" /> },
-                            { label: "Units Available", val: 8940, icon: <Droplet className="w-6 h-6 text-rose-500" /> }
+                            { label: "Active Donors", val: 1240, icon: <Heart className="w-6 h-6 text-primary" /> },
+                            { label: "Lives Saved", val: 3560, icon: <Activity className="w-6 h-6 text-emerald-500" /> },
+                            { label: "Blood Banks", val: 6, icon: <Building2 className="w-6 h-6 text-blue-500" /> },
+                            { label: "Units Available", val: 1120, icon: <Droplet className="w-6 h-6 text-rose-500" /> }
                         ].map((stat, i) => (
                             <motion.div
                                 key={i}
@@ -175,7 +173,7 @@ export default function Home() {
                                 <Zap className="w-4 h-4" /> Fully Functional Features
                             </span>
                             <h2 className="text-3xl md:text-5xl font-bold mb-4">Intelligent Infrastructure</h2>
-                            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Powered by next-gen algorithms to handle critical healthcare demands across Tamil Nadu seamlessly.</p>
+                            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Powered by next-gen algorithms to handle critical healthcare demands across Namakkal District seamlessly.</p>
                         </motion.div>
                     </div>
 
@@ -211,8 +209,8 @@ export default function Home() {
                 {/* PARTNER HOSPITALS MARQUEE */}
                 <section className="container mx-auto px-4">
                     <div className="text-center mb-8">
-                        <h2 className="text-2xl md:text-3xl font-bold mb-2">Trusted by Leading TN Hospitals</h2>
-                        <p className="text-muted-foreground">Government & Private hospitals across Tamil Nadu</p>
+                        <h2 className="text-2xl md:text-3xl font-bold mb-2">Trusted by Namakkal District Blood Banks</h2>
+                        <p className="text-muted-foreground">Government & Private blood banks across Namakkal District</p>
                     </div>
                     <div className="overflow-hidden relative">
                         <motion.div

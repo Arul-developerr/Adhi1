@@ -1,4 +1,4 @@
-// Tamil Nadu Government & Private Hospital Data
+// Namakkal District Government & Private Blood Bank Data
 // Smart Blood Bank Management System
 
 export interface Hospital {
@@ -9,6 +9,8 @@ export interface Hospital {
     type: "government" | "private"
     bloodBankCapacity: number
     contact: string
+    address: string
+    hours?: string
     lat: number
     lng: number
     inventory: BloodInventory
@@ -63,408 +65,236 @@ export interface PredictionZone {
 }
 
 // ──────────────────────────────────────────────
-// Tamil Nadu Hospitals
+// Namakkal District Blood Banks
 // ──────────────────────────────────────────────
 export const tnHospitals: Hospital[] = [
-    // Government Hospitals
+    // Government Blood Banks
     {
         id: "gov-01",
-        name: "Rajiv Gandhi Government General Hospital",
-        city: "Chennai",
-        district: "Chennai",
+        name: "Govt. Headquarters Hospital Blood Bank",
+        city: "Namakkal",
+        district: "Namakkal",
         type: "government",
-        bloodBankCapacity: 5000,
-        contact: "044-25305000",
-        lat: 13.0827,
-        lng: 80.2707,
-        inventory: { "A+": 320, "A-": 45, "B+": 280, "B-": 38, "O+": 410, "O-": 52, "AB+": 95, "AB-": 18 }
+        bloodBankCapacity: 1500,
+        contact: "04286-221411 / 9942933213",
+        address: "Namakkal Town, Namakkal District",
+        lat: 11.2189,
+        lng: 78.1674,
+        inventory: { "A+": 120, "A-": 15, "B+": 105, "B-": 12, "O+": 180, "O-": 22, "AB+": 38, "AB-": 6 }
     },
     {
         id: "gov-02",
-        name: "Government Kilpauk Medical College Hospital",
-        city: "Chennai",
-        district: "Chennai",
+        name: "Govt. Hospital Blood Bank, Tiruchengode",
+        city: "Tiruchengode",
+        district: "Namakkal",
         type: "government",
-        bloodBankCapacity: 3500,
-        contact: "044-26432414",
-        lat: 13.0878,
-        lng: 80.2454,
-        inventory: { "A+": 210, "A-": 30, "B+": 190, "B-": 25, "O+": 340, "O-": 40, "AB+": 72, "AB-": 12 }
+        bloodBankCapacity: 800,
+        contact: "04288-222333",
+        address: "Tiruchengode, Namakkal District",
+        lat: 11.3932,
+        lng: 77.9943,
+        inventory: { "A+": 65, "A-": 8, "B+": 55, "B-": 7, "O+": 95, "O-": 12, "AB+": 20, "AB-": 3 }
     },
     {
         id: "gov-03",
-        name: "Government Royapettah Hospital",
-        city: "Chennai",
-        district: "Chennai",
+        name: "Govt. Hospital Blood Bank, Rasipuram",
+        city: "Rasipuram",
+        district: "Namakkal",
         type: "government",
-        bloodBankCapacity: 2000,
-        contact: "044-28193111",
-        lat: 13.0539,
-        lng: 80.2636,
-        inventory: { "A+": 150, "A-": 22, "B+": 130, "B-": 18, "O+": 220, "O-": 28, "AB+": 55, "AB-": 8 }
-    },
-    {
-        id: "gov-04",
-        name: "Government Rajaji Hospital",
-        city: "Madurai",
-        district: "Madurai",
-        type: "government",
-        bloodBankCapacity: 4000,
-        contact: "0452-2532535",
-        lat: 9.9252,
-        lng: 78.1198,
-        inventory: { "A+": 260, "A-": 35, "B+": 240, "B-": 30, "O+": 380, "O-": 45, "AB+": 80, "AB-": 14 }
-    },
-    {
-        id: "gov-05",
-        name: "Coimbatore Medical College Hospital",
-        city: "Coimbatore",
-        district: "Coimbatore",
-        type: "government",
-        bloodBankCapacity: 3500,
-        contact: "0422-2301393",
-        lat: 11.0168,
-        lng: 76.9558,
-        inventory: { "A+": 230, "A-": 28, "B+": 200, "B-": 22, "O+": 350, "O-": 38, "AB+": 68, "AB-": 11 }
-    },
-    {
-        id: "gov-06",
-        name: "Government Hospital Tiruchirappalli",
-        city: "Tiruchirappalli",
-        district: "Tiruchirappalli",
-        type: "government",
-        bloodBankCapacity: 3000,
-        contact: "0431-2414969",
-        lat: 10.7905,
-        lng: 78.7047,
-        inventory: { "A+": 200, "A-": 25, "B+": 180, "B-": 20, "O+": 310, "O-": 35, "AB+": 62, "AB-": 10 }
-    },
-    {
-        id: "gov-07",
-        name: "Government Mohan Kumaramangalam Medical College Hospital",
-        city: "Salem",
-        district: "Salem",
-        type: "government",
-        bloodBankCapacity: 2500,
-        contact: "0427-2312780",
-        lat: 11.6643,
-        lng: 78.1460,
-        inventory: { "A+": 170, "A-": 20, "B+": 150, "B-": 16, "O+": 260, "O-": 30, "AB+": 52, "AB-": 8 }
-    },
-    {
-        id: "gov-08",
-        name: "Government Vellore Medical College Hospital",
-        city: "Vellore",
-        district: "Vellore",
-        type: "government",
-        bloodBankCapacity: 2000,
-        contact: "0416-2263363",
-        lat: 12.9165,
-        lng: 79.1325,
-        inventory: { "A+": 140, "A-": 18, "B+": 120, "B-": 14, "O+": 210, "O-": 24, "AB+": 45, "AB-": 7 }
-    },
-    {
-        id: "gov-09",
-        name: "Thanjavur Medical College Hospital",
-        city: "Thanjavur",
-        district: "Thanjavur",
-        type: "government",
-        bloodBankCapacity: 2000,
-        contact: "04362-231871",
-        lat: 10.7870,
-        lng: 79.1378,
-        inventory: { "A+": 130, "A-": 15, "B+": 110, "B-": 12, "O+": 200, "O-": 22, "AB+": 40, "AB-": 6 }
-    },
-    {
-        id: "gov-10",
-        name: "Tirunelveli Medical College Hospital",
-        city: "Tirunelveli",
-        district: "Tirunelveli",
-        type: "government",
-        bloodBankCapacity: 2500,
-        contact: "0462-2572736",
-        lat: 8.7139,
-        lng: 77.7567,
-        inventory: { "A+": 160, "A-": 19, "B+": 140, "B-": 17, "O+": 240, "O-": 28, "AB+": 48, "AB-": 8 }
+        bloodBankCapacity: 800,
+        contact: "04287-231555",
+        address: "Rasipuram East, Namakkal District",
+        lat: 11.4600,
+        lng: 78.1800,
+        inventory: { "A+": 60, "A-": 7, "B+": 50, "B-": 6, "O+": 88, "O-": 10, "AB+": 18, "AB-": 3 }
     },
 
-    // Private Hospitals
+    // Private & Voluntary Blood Banks
     {
         id: "pvt-01",
-        name: "Apollo Hospitals",
-        city: "Chennai",
-        district: "Chennai",
+        name: "Vivekananda Blood Bank",
+        city: "Tiruchengode",
+        district: "Namakkal",
         type: "private",
-        bloodBankCapacity: 6000,
-        contact: "044-28293333",
-        lat: 13.0069,
-        lng: 80.2206,
-        inventory: { "A+": 400, "A-": 55, "B+": 350, "B-": 45, "O+": 500, "O-": 65, "AB+": 120, "AB-": 22 }
+        bloodBankCapacity: 600,
+        contact: "04288-225500",
+        address: "Elayampalayam, Tiruchengode",
+        hours: "Open 24 Hours",
+        lat: 11.3850,
+        lng: 77.9850,
+        inventory: { "A+": 48, "A-": 6, "B+": 42, "B-": 5, "O+": 72, "O-": 9, "AB+": 15, "AB-": 2 }
     },
     {
         id: "pvt-02",
-        name: "MIOT International Hospital",
-        city: "Chennai",
-        district: "Chennai",
+        name: "Shharc Charity Blood Bank",
+        city: "Namakkal",
+        district: "Namakkal",
         type: "private",
-        bloodBankCapacity: 4000,
-        contact: "044-42002288",
-        lat: 13.0154,
-        lng: 80.1638,
-        inventory: { "A+": 280, "A-": 38, "B+": 250, "B-": 32, "O+": 380, "O-": 48, "AB+": 90, "AB-": 16 }
+        bloodBankCapacity: 500,
+        contact: "04286-228899",
+        address: "39A, Dr. Shankaram Road, Gandhi Nagar (Near BSNL Office), Namakkal",
+        lat: 11.2200,
+        lng: 78.1650,
+        inventory: { "A+": 40, "A-": 5, "B+": 35, "B-": 4, "O+": 60, "O-": 7, "AB+": 12, "AB-": 2 }
     },
     {
         id: "pvt-03",
-        name: "Fortis Malar Hospital",
-        city: "Chennai",
-        district: "Chennai",
+        name: "Bharath Clinical Laboratory And Blood Bank",
+        city: "Namakkal",
+        district: "Namakkal",
         type: "private",
-        bloodBankCapacity: 3000,
-        contact: "044-42892222",
-        lat: 13.0339,
-        lng: 80.2542,
-        inventory: { "A+": 220, "A-": 30, "B+": 190, "B-": 24, "O+": 310, "O-": 38, "AB+": 72, "AB-": 12 }
-    },
-    {
-        id: "pvt-04",
-        name: "Kauvery Hospital",
-        city: "Tiruchirappalli",
-        district: "Tiruchirappalli",
-        type: "private",
-        bloodBankCapacity: 3500,
-        contact: "0431-4077777",
-        lat: 10.8203,
-        lng: 78.6870,
-        inventory: { "A+": 240, "A-": 32, "B+": 210, "B-": 26, "O+": 360, "O-": 42, "AB+": 78, "AB-": 13 }
-    },
-    {
-        id: "pvt-05",
-        name: "Meenakshi Mission Hospital",
-        city: "Madurai",
-        district: "Madurai",
-        type: "private",
-        bloodBankCapacity: 3000,
-        contact: "0452-2588741",
-        lat: 9.9129,
-        lng: 78.1297,
-        inventory: { "A+": 200, "A-": 26, "B+": 180, "B-": 22, "O+": 300, "O-": 35, "AB+": 65, "AB-": 11 }
-    },
-    {
-        id: "pvt-06",
-        name: "PSG Hospitals",
-        city: "Coimbatore",
-        district: "Coimbatore",
-        type: "private",
-        bloodBankCapacity: 3000,
-        contact: "0422-2570170",
-        lat: 11.0240,
-        lng: 77.0028,
-        inventory: { "A+": 210, "A-": 28, "B+": 190, "B-": 24, "O+": 320, "O-": 38, "AB+": 70, "AB-": 12 }
-    },
-    {
-        id: "pvt-07",
-        name: "Ganga Medical Centre",
-        city: "Coimbatore",
-        district: "Coimbatore",
-        type: "private",
-        bloodBankCapacity: 2500,
-        contact: "0422-2485000",
-        lat: 11.0145,
-        lng: 76.9988,
-        inventory: { "A+": 180, "A-": 22, "B+": 160, "B-": 20, "O+": 270, "O-": 32, "AB+": 58, "AB-": 10 }
-    },
-    {
-        id: "pvt-08",
-        name: "Sri Ramachandra Medical Centre",
-        city: "Chennai",
-        district: "Chennai",
-        type: "private",
-        bloodBankCapacity: 3500,
-        contact: "044-24768027",
-        lat: 13.0350,
-        lng: 80.1418,
-        inventory: { "A+": 250, "A-": 34, "B+": 220, "B-": 28, "O+": 370, "O-": 44, "AB+": 82, "AB-": 14 }
-    },
-    {
-        id: "pvt-09",
-        name: "CMC Vellore (Christian Medical College)",
-        city: "Vellore",
-        district: "Vellore",
-        type: "private",
-        bloodBankCapacity: 5000,
-        contact: "0416-2281000",
-        lat: 12.9249,
-        lng: 79.1353,
-        inventory: { "A+": 350, "A-": 48, "B+": 300, "B-": 40, "O+": 450, "O-": 58, "AB+": 105, "AB-": 20 }
-    },
-    {
-        id: "pvt-10",
-        name: "GKNM Hospital",
-        city: "Coimbatore",
-        district: "Coimbatore",
-        type: "private",
-        bloodBankCapacity: 2500,
-        contact: "0422-2216500",
-        lat: 11.0052,
-        lng: 76.9613,
-        inventory: { "A+": 170, "A-": 20, "B+": 150, "B-": 18, "O+": 250, "O-": 30, "AB+": 55, "AB-": 9 }
+        bloodBankCapacity: 400,
+        contact: "04286-227766",
+        address: "No. 71/13, Trichy Main Road, Namakkal",
+        lat: 11.2150,
+        lng: 78.1700,
+        inventory: { "A+": 32, "A-": 4, "B+": 28, "B-": 3, "O+": 48, "O-": 6, "AB+": 10, "AB-": 2 }
     },
 ]
 
 // ──────────────────────────────────────────────
-// Mock Donors across Tamil Nadu
+// Namakkal District Donors
 // ──────────────────────────────────────────────
 export const tnDonors: Donor[] = [
-    { id: "D001", name: "Arun Kumar S.", bloodGroup: "O+", city: "Chennai", district: "Chennai", phone: "+91 98410 XXXXX", lastDonation: "2025-11-15", isAvailable: true, rating: 4.9, distance: "2.3 km", eta: "8 mins" },
-    { id: "D002", name: "Priya Lakshmi R.", bloodGroup: "A+", city: "Chennai", district: "Chennai", phone: "+91 94440 XXXXX", lastDonation: "2025-10-20", isAvailable: true, rating: 5.0, distance: "3.1 km", eta: "12 mins" },
-    { id: "D003", name: "Karthikeyan M.", bloodGroup: "B+", city: "Madurai", district: "Madurai", phone: "+91 97890 XXXXX", lastDonation: "2025-12-01", isAvailable: true, rating: 4.8, distance: "1.8 km", eta: "6 mins" },
-    { id: "D004", name: "Meena Sundari V.", bloodGroup: "O-", city: "Coimbatore", district: "Coimbatore", phone: "+91 98650 XXXXX", lastDonation: "2025-09-10", isAvailable: true, rating: 4.7, distance: "4.5 km", eta: "18 mins" },
-    { id: "D005", name: "Rajesh Kannan T.", bloodGroup: "AB+", city: "Tiruchirappalli", district: "Tiruchirappalli", phone: "+91 98430 XXXXX", lastDonation: "2025-11-28", isAvailable: true, rating: 4.9, distance: "2.0 km", eta: "9 mins" },
-    { id: "D006", name: "Sangeetha D.", bloodGroup: "A-", city: "Salem", district: "Salem", phone: "+91 99420 XXXXX", lastDonation: "2025-10-05", isAvailable: false, rating: 4.6, distance: "5.2 km", eta: "22 mins" },
-    { id: "D007", name: "Murugan P.", bloodGroup: "B-", city: "Vellore", district: "Vellore", phone: "+91 94430 XXXXX", lastDonation: "2025-12-10", isAvailable: true, rating: 5.0, distance: "1.5 km", eta: "5 mins" },
-    { id: "D008", name: "Deepika Narayanan.", bloodGroup: "O+", city: "Thanjavur", district: "Thanjavur", phone: "+91 97860 XXXXX", lastDonation: "2025-08-22", isAvailable: true, rating: 4.8, distance: "3.8 km", eta: "15 mins" },
-    { id: "D009", name: "Senthil Kumar B.", bloodGroup: "A+", city: "Tirunelveli", district: "Tirunelveli", phone: "+91 98940 XXXXX", lastDonation: "2025-11-01", isAvailable: true, rating: 4.5, distance: "6.1 km", eta: "25 mins" },
-    { id: "D010", name: "Kavitha Rajan.", bloodGroup: "O+", city: "Chennai", district: "Chennai", phone: "+91 98400 XXXXX", lastDonation: "2025-12-18", isAvailable: true, rating: 4.9, distance: "1.2 km", eta: "4 mins" },
-    { id: "D011", name: "Balaji Narasimhan.", bloodGroup: "B+", city: "Chennai", district: "Chennai", phone: "+91 94450 XXXXX", lastDonation: "2025-10-15", isAvailable: true, rating: 4.7, distance: "2.8 km", eta: "10 mins" },
-    { id: "D012", name: "Lakshmi Priya G.", bloodGroup: "AB-", city: "Madurai", district: "Madurai", phone: "+91 97870 XXXXX", lastDonation: "2025-09-28", isAvailable: true, rating: 4.8, distance: "3.5 km", eta: "14 mins" },
+    { id: "D001", name: "Senthil Kumar R.", bloodGroup: "O+", city: "Namakkal", district: "Namakkal", phone: "+91 94430 XXXXX", lastDonation: "2025-11-15", isAvailable: true, rating: 4.9, distance: "1.5 km", eta: "6 mins" },
+    { id: "D002", name: "Kavitha Devi M.", bloodGroup: "A+", city: "Namakkal", district: "Namakkal", phone: "+91 97890 XXXXX", lastDonation: "2025-10-20", isAvailable: true, rating: 5.0, distance: "2.2 km", eta: "9 mins" },
+    { id: "D003", name: "Rajesh Kannan P.", bloodGroup: "B+", city: "Tiruchengode", district: "Namakkal", phone: "+91 98650 XXXXX", lastDonation: "2025-12-01", isAvailable: true, rating: 4.8, distance: "3.0 km", eta: "12 mins" },
+    { id: "D004", name: "Lakshmi Priya S.", bloodGroup: "O-", city: "Rasipuram", district: "Namakkal", phone: "+91 94440 XXXXX", lastDonation: "2025-09-10", isAvailable: true, rating: 4.7, distance: "4.2 km", eta: "16 mins" },
+    { id: "D005", name: "Murugan K.", bloodGroup: "AB+", city: "Namakkal", district: "Namakkal", phone: "+91 98940 XXXXX", lastDonation: "2025-11-28", isAvailable: true, rating: 4.9, distance: "1.8 km", eta: "7 mins" },
+    { id: "D006", name: "Priya Narayanan T.", bloodGroup: "A-", city: "Tiruchengode", district: "Namakkal", phone: "+91 99420 XXXXX", lastDonation: "2025-10-05", isAvailable: false, rating: 4.6, distance: "5.0 km", eta: "20 mins" },
+    { id: "D007", name: "Balaji N.", bloodGroup: "B-", city: "Paramathi-Velur", district: "Namakkal", phone: "+91 94450 XXXXX", lastDonation: "2025-12-10", isAvailable: true, rating: 5.0, distance: "6.1 km", eta: "22 mins" },
+    { id: "D008", name: "Deepika Sundaram V.", bloodGroup: "O+", city: "Mohanur", district: "Namakkal", phone: "+91 97860 XXXXX", lastDonation: "2025-08-22", isAvailable: true, rating: 4.8, distance: "8.5 km", eta: "28 mins" },
 ]
 
 // ──────────────────────────────────────────────
-// Emergency Alerts
+// Emergency Alerts — Namakkal District
 // ──────────────────────────────────────────────
 export const tnAlerts: EmergencyAlert[] = [
     {
         id: "ALT-001",
         type: "critical_shortage",
         hospitalId: "gov-01",
-        hospitalName: "Rajiv Gandhi GGH, Chennai",
+        hospitalName: "Govt. HQ Hospital Blood Bank, Namakkal",
         bloodGroup: "O-",
-        message: "Critical O-Negative shortage. Only 12 units remaining. Expected surge due to road accident cases.",
+        message: "Critical O-Negative shortage. Only 8 units remaining. Urgent replenishment required due to accident cases.",
         urgency: "critical",
-        timestamp: "2 mins ago",
+        timestamp: "5 mins ago",
         status: "active",
-        district: "Chennai"
+        district: "Namakkal"
     },
     {
         id: "ALT-002",
         type: "emergency_request",
-        hospitalId: "pvt-04",
-        hospitalName: "Kauvery Hospital, Trichy",
+        hospitalId: "pvt-01",
+        hospitalName: "Vivekananda Blood Bank, Tiruchengode",
         bloodGroup: "AB-",
-        message: "Emergency surgery requires 4 units of AB-Negative. Immediate donor match needed.",
+        message: "Emergency surgery requires 3 units of AB-Negative. Immediate donor match needed.",
         urgency: "critical",
-        timestamp: "8 mins ago",
+        timestamp: "12 mins ago",
         status: "active",
-        district: "Tiruchirappalli"
+        district: "Namakkal"
     },
     {
         id: "ALT-003",
         type: "expiry_warning",
-        hospitalId: "gov-05",
-        hospitalName: "Coimbatore Medical College Hospital",
+        hospitalId: "gov-02",
+        hospitalName: "Govt. Hospital Blood Bank, Tiruchengode",
         bloodGroup: "A+",
-        message: "28 units of A-Positive expiring within 48 hours. Transfer required to high-demand zones.",
+        message: "12 units of A-Positive expiring within 48 hours. Transfer to high-demand zones recommended.",
         urgency: "high",
-        timestamp: "15 mins ago",
+        timestamp: "25 mins ago",
         status: "pending",
-        district: "Coimbatore"
+        district: "Namakkal"
     },
     {
         id: "ALT-004",
         type: "donor_match",
-        hospitalId: "pvt-01",
-        hospitalName: "Apollo Hospitals, Chennai",
+        hospitalId: "pvt-02",
+        hospitalName: "Shharc Charity Blood Bank, Namakkal",
         bloodGroup: "B+",
-        message: "3 compatible donors found within 5km radius for pending B+ request.",
+        message: "2 compatible donors found within 3km radius for pending B+ request.",
         urgency: "standard",
-        timestamp: "22 mins ago",
+        timestamp: "40 mins ago",
         status: "resolved",
-        district: "Chennai"
+        district: "Namakkal"
     },
     {
         id: "ALT-005",
         type: "critical_shortage",
-        hospitalId: "gov-04",
-        hospitalName: "Govt. Rajaji Hospital, Madurai",
+        hospitalId: "gov-03",
+        hospitalName: "Govt. Hospital Blood Bank, Rasipuram",
         bloodGroup: "B-",
         message: "B-Negative stock depleted. Festival season demand spike anticipated. Urgent replenishment needed.",
         urgency: "critical",
-        timestamp: "35 mins ago",
+        timestamp: "1 hour ago",
         status: "active",
-        district: "Madurai"
+        district: "Namakkal"
     },
     {
         id: "ALT-006",
         type: "emergency_request",
-        hospitalId: "gov-07",
-        hospitalName: "Govt. Medical College, Salem",
+        hospitalId: "gov-01",
+        hospitalName: "Govt. HQ Hospital Blood Bank, Namakkal",
         bloodGroup: "O+",
-        message: "Mass casualty incident. 10 units O+ needed urgently for accident victims.",
+        message: "Road accident case. 5 units O+ needed urgently for multiple victims.",
         urgency: "critical",
-        timestamp: "1 hour ago",
+        timestamp: "1.5 hours ago",
         status: "active",
-        district: "Salem"
+        district: "Namakkal"
     },
     {
         id: "ALT-007",
         type: "expiry_warning",
-        hospitalId: "pvt-09",
-        hospitalName: "CMC Vellore",
+        hospitalId: "pvt-03",
+        hospitalName: "Bharath Clinical Lab & Blood Bank, Namakkal",
         bloodGroup: "AB+",
-        message: "15 units of AB+ approaching expiry in 72 hours. Redistribution recommended.",
+        message: "8 units of AB+ approaching expiry in 72 hours. Redistribution recommended.",
         urgency: "high",
-        timestamp: "1.5 hours ago",
+        timestamp: "2 hours ago",
         status: "pending",
-        district: "Vellore"
+        district: "Namakkal"
     },
     {
         id: "ALT-008",
         type: "donor_match",
-        hospitalId: "pvt-05",
-        hospitalName: "Meenakshi Mission Hospital, Madurai",
+        hospitalId: "pvt-01",
+        hospitalName: "Vivekananda Blood Bank, Tiruchengode",
         bloodGroup: "O-",
-        message: "Rare O-Negative donor identified 3.2km away. Awaiting confirmation.",
+        message: "Rare O-Negative donor identified 2.5km away. Awaiting confirmation.",
         urgency: "high",
-        timestamp: "2 hours ago",
+        timestamp: "3 hours ago",
         status: "pending",
-        district: "Madurai"
+        district: "Namakkal"
     },
 ]
 
 // ──────────────────────────────────────────────
-// AI Prediction Zone Data
+// AI Prediction Zone Data — Namakkal Sub-Zones
 // ──────────────────────────────────────────────
 export const tnPredictionZones: PredictionZone[] = [
-    { district: "Chennai", currentDemand: 1850, predictedDemand: 2200, changePercent: 18.9, riskLevel: "high", topShortage: "O-", season: "Monsoon" },
-    { district: "Madurai", currentDemand: 980, predictedDemand: 1150, changePercent: 17.3, riskLevel: "high", topShortage: "B-", season: "Festival" },
-    { district: "Coimbatore", currentDemand: 1100, predictedDemand: 1250, changePercent: 13.6, riskLevel: "medium", topShortage: "A-", season: "Summer" },
-    { district: "Tiruchirappalli", currentDemand: 750, predictedDemand: 820, changePercent: 9.3, riskLevel: "medium", topShortage: "O-", season: "Monsoon" },
-    { district: "Salem", currentDemand: 620, predictedDemand: 740, changePercent: 19.4, riskLevel: "high", topShortage: "O+", season: "Festival" },
-    { district: "Vellore", currentDemand: 540, predictedDemand: 580, changePercent: 7.4, riskLevel: "low", topShortage: "AB-", season: "Normal" },
-    { district: "Thanjavur", currentDemand: 430, predictedDemand: 510, changePercent: 18.6, riskLevel: "high", topShortage: "B+", season: "Monsoon" },
-    { district: "Tirunelveli", currentDemand: 510, predictedDemand: 590, changePercent: 15.7, riskLevel: "medium", topShortage: "O-", season: "Summer" },
-    { district: "Erode", currentDemand: 380, predictedDemand: 410, changePercent: 7.9, riskLevel: "low", topShortage: "A+", season: "Normal" },
-    { district: "Thoothukudi", currentDemand: 310, predictedDemand: 380, changePercent: 22.6, riskLevel: "critical", topShortage: "O-", season: "Monsoon" },
-    { district: "Kanchipuram", currentDemand: 420, predictedDemand: 460, changePercent: 9.5, riskLevel: "medium", topShortage: "B-", season: "Normal" },
-    { district: "Dindigul", currentDemand: 280, predictedDemand: 340, changePercent: 21.4, riskLevel: "critical", topShortage: "AB-", season: "Festival" },
+    { district: "Namakkal Town", currentDemand: 420, predictedDemand: 510, changePercent: 21.4, riskLevel: "high", topShortage: "O-", season: "Festival" },
+    { district: "Tiruchengode", currentDemand: 310, predictedDemand: 380, changePercent: 22.6, riskLevel: "critical", topShortage: "AB-", season: "Monsoon" },
+    { district: "Rasipuram", currentDemand: 250, predictedDemand: 290, changePercent: 16.0, riskLevel: "high", topShortage: "B-", season: "Festival" },
+    { district: "Paramathi-Velur", currentDemand: 140, predictedDemand: 160, changePercent: 14.3, riskLevel: "medium", topShortage: "O+", season: "Summer" },
+    { district: "Mohanur", currentDemand: 100, predictedDemand: 110, changePercent: 10.0, riskLevel: "medium", topShortage: "A-", season: "Normal" },
 ]
 
 // ──────────────────────────────────────────────
 // Monthly trend data for charts
 // ──────────────────────────────────────────────
 export const monthlyTrendData = [
-    { month: "Jan", demand: 4200, supply: 4500, donations: 1200 },
-    { month: "Feb", demand: 3800, supply: 4100, donations: 1100 },
-    { month: "Mar", demand: 4100, supply: 3900, donations: 980 },
-    { month: "Apr", demand: 4800, supply: 4200, donations: 1050 },
-    { month: "May", demand: 5200, supply: 4600, donations: 1150 },
-    { month: "Jun", demand: 4500, supply: 4400, donations: 1300 },
-    { month: "Jul", demand: 4900, supply: 4300, donations: 1080 },
-    { month: "Aug", demand: 5100, supply: 4500, donations: 1200 },
-    { month: "Sep", demand: 4700, supply: 4600, donations: 1350 },
-    { month: "Oct", demand: 5500, supply: 4800, donations: 1100 },
-    { month: "Nov", demand: 5800, supply: 5000, donations: 1250 },
-    { month: "Dec", demand: 5200, supply: 5100, donations: 1400 },
+    { month: "Jan", demand: 520, supply: 560, donations: 150 },
+    { month: "Feb", demand: 480, supply: 510, donations: 140 },
+    { month: "Mar", demand: 510, supply: 490, donations: 125 },
+    { month: "Apr", demand: 600, supply: 530, donations: 135 },
+    { month: "May", demand: 650, supply: 580, donations: 145 },
+    { month: "Jun", demand: 560, supply: 550, donations: 165 },
+    { month: "Jul", demand: 610, supply: 540, donations: 138 },
+    { month: "Aug", demand: 640, supply: 560, donations: 155 },
+    { month: "Sep", demand: 590, supply: 570, donations: 170 },
+    { month: "Oct", demand: 690, supply: 600, donations: 142 },
+    { month: "Nov", demand: 720, supply: 630, donations: 160 },
+    { month: "Dec", demand: 650, supply: 640, donations: 180 },
 ]
 
 // ──────────────────────────────────────────────

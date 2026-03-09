@@ -74,10 +74,10 @@ export default function EmergencyAlerts() {
     useEffect(() => {
         const interval = setInterval(() => {
             const randomEvents = [
-                "New platelet donation drive registered at Chennai zone.",
-                "Donor match confirmed for pending AB- request in Madurai.",
-                "Stock levels restored for O+ at Trichy Government Hospital.",
-                "Seasonal demand alert: Monsoon surge predicted in Thanjavur district."
+                "New platelet donation drive registered at Namakkal Town zone.",
+                "Donor match confirmed for pending AB- request in Tiruchengode.",
+                "Stock levels restored for O+ at Govt. Hospital, Rasipuram.",
+                "Seasonal demand alert: Festival surge predicted in Namakkal District."
             ]
             const newAlert: EmergencyAlert = {
                 id: `ALT-LIVE-${Date.now()}`,
@@ -156,7 +156,7 @@ export default function EmergencyAlerts() {
                         Emergency Alert Center
                     </h1>
                     <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                        Push notifications via SMS & App for high-urgency requirements across Tamil Nadu medical network.
+                        Push notifications via SMS & App for high-urgency requirements across Namakkal District medical network.
                     </p>
                 </motion.div>
 

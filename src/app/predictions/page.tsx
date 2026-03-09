@@ -77,7 +77,7 @@ export default function AIPredictions() {
                         AI Demand Prediction
                     </h1>
                     <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                        Machine learning models forecasting seasonal shortages across Tamil Nadu&apos;s {tnPredictionZones.length} zones.
+                        Machine learning models forecasting seasonal shortages across Namakkal District&apos;s {tnPredictionZones.length} zones.
                     </p>
                 </motion.div>
 

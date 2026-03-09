@@ -37,32 +37,13 @@ export default function RealTimeInventory() {
     const [filterType, setFilterType] = useState("")
     const [filterBloodGroup, setFilterBloodGroup] = useState("")
     const [hospitals, setHospitals] = useState<Hospital[]>(tnHospitals)
-    const [tick, setTick] = useState(0)
-
-    // Simulate real-time inventory fluctuation
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setTick(prev => prev + 1)
-        }, 5000)
-        return () => clearInterval(interval)
-    }, [])
 
     useEffect(() => {
         let filtered = [...tnHospitals]
         if (filterDistrict) filtered = filtered.filter(h => h.district === filterDistrict)
         if (filterType) filtered = filtered.filter(h => h.type === filterType)
-        // Add random fluctuation for real-time effect
-        filtered = filtered.map(h => ({
-            ...h,
-            inventory: Object.fromEntries(
-                Object.entries(h.inventory).map(([key, val]) => [
-                    key,
-                    Math.max(0, val + Math.floor(Math.random() * 10) - 5)
-                ])
-            ) as unknown as BloodInventory
-        }))
         setHospitals(filtered)
-    }, [filterDistrict, filterType, tick])
+    }, [filterDistrict, filterType])
 
     const totalByGroup = bloodGroups.map(group => ({
         group,
@@ -92,7 +73,7 @@ export default function RealTimeInventory() {
                         Real-Time Blood Inventory
                     </h1>
                     <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                        Live integration with blood banks across Tamil Nadu ensuring accurate unit availability for {tnHospitals.length} hospitals.
+                        Live integration with blood banks across Namakkal District ensuring accurate unit availability for {tnHospitals.length} blood banks.
                     </p>
                 </motion.div>
 

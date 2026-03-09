@@ -79,7 +79,7 @@ export default function AutomatedMatching() {
                         Automated Donor Matching
                     </h1>
                     <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                        Instantly pairs compatible donors with critical patients across Tamil Nadu using spatial proximity and AI algorithms.
+                        Instantly pairs compatible donors with critical patients across Namakkal District using spatial proximity and AI algorithms.
                     </p>
                 </motion.div>
 
@@ -136,7 +136,7 @@ export default function AutomatedMatching() {
                             {matchStatus === "scanning" && (
                                 <div className="space-y-2">
                                     <div className="flex justify-between text-sm text-muted-foreground">
-                                        <span>Scanning TN Donor Network</span>
+                                        <span>Scanning Namakkal District Donor Network</span>
                                         <span>{scanProgress}%</span>
                                     </div>
                                     <div className="h-2 bg-muted rounded-full overflow-hidden">
@@ -205,7 +205,7 @@ export default function AutomatedMatching() {
                                     >
                                         <Users className="w-20 h-20 text-muted-foreground mb-6 opacity-40" />
                                     </motion.div>
-                                    <p className="text-muted-foreground text-lg">Select a blood group and start the AI matching engine to find compatible donors across Tamil Nadu</p>
+                                    <p className="text-muted-foreground text-lg">Select a blood group and start the AI matching engine to find compatible donors across Namakkal District</p>
                                 </motion.div>
                             )}
 
@@ -232,7 +232,7 @@ export default function AutomatedMatching() {
 
                                     <div className="z-10 text-center">
                                         <h3 className="text-3xl font-bold mb-3 text-primary drop-shadow-[0_0_10px_rgba(185,28,28,0.6)]">
-                                            Scanning Tamil Nadu
+                                            Scanning Namakkal District
                                         </h3>
                                         <p className="text-foreground/70 mb-2 font-mono text-sm">
                                             Analyzing {tnDonors.length.toLocaleString()} registered donors

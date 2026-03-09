@@ -20,15 +20,15 @@ const inventoryData = [
 ]
 
 const recentRequests = [
-    { id: "REQ-01", hospital: "Rajiv Gandhi GGH, Chennai", group: "O-", urgency: "Critical", time: "2 mins ago", status: "Matched" },
-    { id: "REQ-02", hospital: "Apollo Hospitals, Chennai", group: "A+", urgency: "Standard", time: "15 mins ago", status: "Pending" },
-    { id: "REQ-03", hospital: "CMC Vellore", group: "B-", urgency: "High", time: "1 hour ago", status: "Fulfilled" },
-    { id: "REQ-04", hospital: "Kauvery Hospital, Trichy", group: "AB+", urgency: "Critical", time: "2 hours ago", status: "Matched" },
-    { id: "REQ-05", hospital: "Govt. Rajaji Hospital, Madurai", group: "O+", urgency: "High", time: "3 hours ago", status: "Fulfilled" },
+    { id: "REQ-01", hospital: "Govt. HQ Hospital, Namakkal", group: "O-", urgency: "Critical", time: "2 mins ago", status: "Matched" },
+    { id: "REQ-02", hospital: "Vivekananda Blood Bank, Tiruchengode", group: "A+", urgency: "Standard", time: "15 mins ago", status: "Pending" },
+    { id: "REQ-03", hospital: "Govt. Hospital, Rasipuram", group: "B-", urgency: "High", time: "1 hour ago", status: "Fulfilled" },
+    { id: "REQ-04", hospital: "Shharc Charity Blood Bank, Namakkal", group: "AB+", urgency: "Critical", time: "2 hours ago", status: "Matched" },
+    { id: "REQ-05", hospital: "Govt. Hospital, Tiruchengode", group: "O+", urgency: "High", time: "3 hours ago", status: "Fulfilled" },
 ]
 
 export default function Dashboard() {
-    const [activeDonors, setActiveDonors] = useState(15420)
+    const [activeDonors, setActiveDonors] = useState(1240)
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -44,9 +44,9 @@ export default function Dashboard() {
             <div className="container mx-auto px-4 py-10 relative">
                 <div className="flex justify-between items-center mb-10 w-full mt-10">
                     <div>
-                        <h1 className="text-3xl font-bold mb-2">TN Blood Network Overview</h1>
+                        <h1 className="text-3xl font-bold mb-2">Namakkal District Blood Network</h1>
                         <p className="text-muted-foreground w-full max-w-lg">
-                            Live monitoring of Tamil Nadu blood inventory, demands, and network health across all districts.
+                            Live monitoring of Namakkal District blood inventory, demands, and network health across all zones.
                         </p>
                     </div>
                     <div className="hidden md:flex flex-col items-end">
@@ -62,8 +62,8 @@ export default function Dashboard() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 mt-10">
                     {[
                         { label: "Active Donors", value: activeDonors.toLocaleString(), icon: Users, color: "text-blue-500" },
-                        { label: "Total Units", value: "8,940", icon: Droplet, color: "text-red-500" },
-                        { label: "TN Hospitals", value: tnHospitals.length.toString(), icon: Building2, color: "text-emerald-500" },
+                        { label: "Total Units", value: "1,120", icon: Droplet, color: "text-red-500" },
+                        { label: "Blood Banks", value: tnHospitals.length.toString(), icon: Building2, color: "text-emerald-500" },
                         { label: "Active Alerts", value: tnAlerts.filter(a => a.status === "active").length.toString(), icon: Bell, color: "text-orange-500" },
                     ].map((stat, i) => (
                         <motion.div
