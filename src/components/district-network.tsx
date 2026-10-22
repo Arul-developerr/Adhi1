@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
 import {
     tnHospitals,
     tnPredictionZones,
@@ -25,6 +24,7 @@ interface Node {
     risk: PredictionZone["riskLevel"]
     change: number
     banks: number
+    local: boolean
 }
 
 /**
@@ -35,11 +35,11 @@ interface Node {
  * a node can never silently fail to join to its zone.
  */
 const LAYOUT: Array<{ id: string; district: string; x: number; y: number }> = [
-    { id: "namakkal", district: "Namakkal Town", x: 50, y: 40 },
-    { id: "tiruchengode", district: "Tiruchengode", x: 18, y: 66 },
-    { id: "rasipuram", district: "Rasipuram", x: 78, y: 24 },
-    { id: "paramathi", district: "Paramathi-Velur", x: 30, y: 18 },
-    { id: "mohanur", district: "Mohanur", x: 82, y: 70 },
+    { id: "namakkal", district: "Namakkal Town", x: 50, y: 52 },
+    { id: "tiruchengode", district: "Tiruchengode", x: 22, y: 78 },
+    { id: "rasipuram", district: "Rasipuram", x: 78, y: 25 },
+    { id: "paramathi", district: "Paramathi-Velur", x: 22, y: 25 },
+    { id: "mohanur", district: "Mohanur", x: 78, y: 78 },
 ];
 
 /**
@@ -92,6 +92,7 @@ const NODES: Node[] = LAYOUT.map(({ id, district, x, y }) => {
         risk: zone.riskLevel,
         change: zone.changePercent,
         banks: local ? zoneBanks.length : tnHospitals.length,
+        local,
     };
 });
 
@@ -123,153 +124,82 @@ function nodeById(id: string) {
  * hover are derived from the seeded blood-bank data.
  */
 export function DistrictNetwork({ className }: { className?: string }) {
-    const [activeId, setActiveId] = React.useState<string | null>(null);
+    const [selectedId, setSelectedId] = React.useState<string | null>(null);
+    const [previewId, setPreviewId] = React.useState<string | null>(null);
+    const activeId = previewId ?? selectedId;
     const active = activeId ? nodeById(activeId) : null;
+
+    const zoneButton = (node: Node, compact: boolean) => (
+        <button
+            key={node.id}
+            type="button"
+            onClick={() => setSelectedId((current) => current === node.id ? null : node.id)}
+            onMouseEnter={() => setPreviewId(node.id)}
+            onMouseLeave={() => setPreviewId(null)}
+            onFocus={() => setPreviewId(node.id)}
+            onBlur={() => setPreviewId(null)}
+            aria-pressed={selectedId === node.id}
+            aria-label={`${node.label} zone, ${RISK_LABEL[node.risk]} forecast risk, ${node.change} percent demand change, scarcest group ${node.group}`}
+            className={`group flex items-center gap-2.5 rounded-lg border bg-surface px-3 py-2 text-left shadow-sm transition-[border-color,background-color,box-shadow,transform] duration-200 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring ${activeId === node.id ? "border-forest bg-surface-raised shadow-md" : "border-line hover:border-line-strong"} ${compact ? "w-full hover:-translate-y-0.5" : "absolute w-[166px] -translate-x-1/2 -translate-y-1/2"}`}
+            style={compact ? undefined : { left: `${node.x}%`, top: `${node.y}%` }}
+        >
+            <span className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border" style={{ borderColor: RISK_COLOR[node.risk], background: `color-mix(in srgb, ${RISK_COLOR[node.risk]} 12%, var(--surface))` }} aria-hidden="true">
+                <span className="h-2.5 w-2.5 rounded-full" style={{ background: RISK_COLOR[node.risk] }} />
+            </span>
+            <span className="min-w-0">
+                <span className="block text-[11px] font-semibold leading-tight text-fg">{node.label}</span>
+                <span className="mt-0.5 block text-[10px] leading-tight text-fg-muted">{RISK_LABEL[node.risk]} risk</span>
+            </span>
+        </button>
+    );
 
     return (
         <div className={className}>
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-line bg-surface">
-                {/* Grid backdrop */}
-                <div
-                    className="absolute inset-0 opacity-70"
-                    style={{
-                        backgroundImage:
-                            "linear-gradient(to right, var(--grid) 1px, transparent 1px), linear-gradient(to bottom, var(--grid) 1px, transparent 1px)",
-                        backgroundSize: "36px 36px",
-                    }}
-                    aria-hidden="true"
-                />
-
-                <svg
-                    viewBox="0 0 400 300"
-                    preserveAspectRatio="none"
-                    className="absolute inset-0 h-full w-full"
-                    aria-hidden="true"
-                >
-                    {LINKS.map(([from, to], index) => {
-                        const a = nodeById(from);
-                        const b = nodeById(to);
-                        const isLit =
-                            activeId !== null && (a.id === activeId || b.id === activeId);
-                        return (
-                            <motion.line
-                                key={`${from}-${to}`}
-                                x1={(a.x / 100) * 400}
-                                y1={(a.y / 100) * 300}
-                                x2={(b.x / 100) * 400}
-                                y2={(b.y / 100) * 300}
-                                stroke={isLit ? "var(--forest)" : "var(--border-strong)"}
-                                strokeWidth={isLit ? 1.8 : 1.2}
-                                vectorEffect="non-scaling-stroke"
-                                initial={{ pathLength: 0, opacity: 0 }}
-                                animate={{ pathLength: 1, opacity: 1 }}
-                                transition={{
-                                    pathLength: {
-                                        delay: 0.25 + index * 0.12,
-                                        duration: 0.7,
-                                        ease: "easeInOut",
-                                    },
-                                    opacity: { delay: 0.25 + index * 0.12, duration: 0.2 },
-                                }}
-                            />
-                        );
-                    })}
-                </svg>
-
-                {/* Nodes */}
-                {NODES.map((node, index) => (
-                    <motion.button
-                        key={node.id}
-                        type="button"
-                        onClick={() =>
-                            setActiveId((prev) => (prev === node.id ? null : node.id))
-                        }
-                        onMouseEnter={() => setActiveId(node.id)}
-                        onMouseLeave={() => setActiveId(null)}
-                        style={{ left: `${node.x}%`, top: `${node.y}%` }}
-                        initial={{ opacity: 0, scale: 0.6 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.4 + index * 0.09, duration: 0.35 }}
-                        className="group absolute -translate-x-1/2 -translate-y-1/2 focus-visible:outline-none"
-                        aria-label={`${node.label} zone, ${RISK_LABEL[node.risk]} forecast risk, ${node.change} percent demand change, scarcest group ${node.group}`}
-                    >
-                        <span
-                            className="relative flex h-7 w-7 items-center justify-center rounded-full border-2 transition-transform duration-200 group-hover:scale-110"
-                            style={{
-                                borderColor: RISK_COLOR[node.risk],
-                                background: `color-mix(in srgb, ${RISK_COLOR[node.risk]} 18%, transparent)`,
-                            }}
-                        >
-                            <span
-                                className="h-2 w-2 rounded-full"
-                                style={{ background: RISK_COLOR[node.risk] }}
-                            />
-                            {node.risk === "critical" && (
-                                <span
-                                    className="absolute inset-0 rounded-full"
-                                    style={{
-                                        boxShadow: `0 0 0 4px color-mix(in srgb, ${RISK_COLOR[node.risk]} 18%, transparent)`,
-                                    }}
-                                    aria-hidden="true"
-                                />
-                            )}
-                        </span>
-                        <span className="pointer-events-none absolute left-1/2 top-full mt-1.5 -translate-x-1/2 whitespace-nowrap text-[10px] font-semibold leading-none text-fg-muted">
-                            {node.label}
-                        </span>
-                    </motion.button>
-                ))}
-
-                {/* Legend */}
-                <div className="absolute bottom-3 left-3 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg border border-line bg-surface/90 px-2.5 py-1.5 backdrop-blur-sm">
-                    {[...RISK_ORDER].reverse().map((risk) => (
-                        <span
-                            key={risk}
-                            className="flex items-center gap-1.5 text-[10px] font-medium text-fg-muted"
-                        >
-                            <span
-                                className="h-1.5 w-1.5 rounded-full"
-                                style={{ background: RISK_COLOR[risk] }}
-                                aria-hidden="true"
-                            />
-                            {RISK_LABEL[risk]}
-                        </span>
-                    ))}
+            <div className="overflow-hidden rounded-xl border border-line bg-surface shadow-xs">
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line px-4 py-3 sm:px-5">
+                    <div>
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-forest dark:text-success-text">District network</p>
+                        <p className="mt-0.5 text-[13px] font-semibold text-fg">Namakkal operational zones</p>
+                    </div>
+                    <span className="rounded-full border border-line bg-surface-sunken px-2.5 py-1 text-[11px] font-medium text-fg-muted">{NODES.length} zones · {tnHospitals.length} banks</span>
                 </div>
 
-                {/* Readout */}
-                <div className="absolute right-3 top-3 min-w-[9.5rem] rounded-lg border border-line bg-surface/95 px-3 py-2 shadow-sm backdrop-blur-sm">
-                    {active ? (
-                        <>
-                            <p className="text-[11px] font-semibold text-fg">
-                                {active.label}
-                            </p>
-                            <p className="mt-0.5 text-[10px] text-fg-muted">
-                                {active.change > 0 ? "+" : ""}
-                                {active.change}% demand ·{" "}
-                                <span style={{ color: RISK_COLOR[active.risk] }}>
-                                    {RISK_LABEL[active.risk]} risk
-                                </span>
-                            </p>
-                            <p className="mt-0.5 text-[10px] text-fg-subtle">
-                                Scarcest group {active.group} · {active.banks} bank
-                                {active.banks === 1 ? "" : "s"}
-                            </p>
-                        </>
-                    ) : (
-                        <p className="text-[10px] leading-relaxed text-fg-subtle">
-                            Hover a zone to inspect its
-                            <br />
-                            forecast position.
-                        </p>
-                    )}
+                <div className="relative hidden h-[330px] bg-bg sm:block lg:h-[370px]" style={{ backgroundImage: "linear-gradient(to right, var(--grid) 1px, transparent 1px), linear-gradient(to bottom, var(--grid) 1px, transparent 1px)", backgroundSize: "32px 32px" }}>
+                    <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full" aria-hidden="true">
+                        {LINKS.map(([from, to]) => {
+                            const a = nodeById(from);
+                            const b = nodeById(to);
+                            const lit = activeId === from || activeId === to;
+                            return <line key={`${from}-${to}`} x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke={lit ? "var(--forest)" : "var(--border-strong)"} strokeWidth={lit ? 2 : 1.2} vectorEffect="non-scaling-stroke" opacity={lit ? 0.9 : 0.65} className="transition-[stroke,opacity] duration-200" />;
+                        })}
+                    </svg>
+                    {NODES.map((node) => zoneButton(node, false))}
+                </div>
+
+                <div className="grid gap-2 bg-bg p-3 sm:hidden">
+                    {NODES.map((node) => zoneButton(node, true))}
+                </div>
+
+                <div className="grid gap-3 border-t border-line px-4 py-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:px-5">
+                    <div aria-live="polite" className="min-h-[36px]">
+                        {active ? <>
+                            <p className="text-[12px] font-semibold text-fg">{active.label} <span className="font-normal text-fg-muted">· {RISK_LABEL[active.risk]} risk</span></p>
+                            <p className="mt-0.5 text-[11px] text-fg-muted">+{active.change}% projected demand · scarcest group {active.group} · {active.banks} {active.local ? (active.banks === 1 ? "local bank" : "local banks") : "district banks"}</p>
+                        </> : <>
+                            <p className="text-[12px] font-semibold text-fg">Select a zone</p>
+                            <p className="mt-0.5 text-[11px] text-fg-muted">Inspect forecast risk and seeded bank coverage.</p>
+                        </>}
+                    </div>
+                    <div className="flex flex-wrap gap-x-3 gap-y-1.5" aria-label="Forecast risk legend">
+                        {[...RISK_ORDER].reverse().map((risk) => <span key={risk} className="flex items-center gap-1.5 text-[10px] font-medium text-fg-muted"><span className="h-2 w-2 rounded-full" style={{ background: RISK_COLOR[risk] }} aria-hidden="true" />{RISK_LABEL[risk]}</span>)}
+                    </div>
                 </div>
             </div>
 
             <p className="mt-2.5 text-[11px] leading-relaxed text-fg-subtle">
                 Schematic of the district&rsquo;s {NODES.length} operational zones.
-                Node positions are illustrative, not a geographic projection; each
-                node is coloured by the forecast risk recorded for that zone.
+                Positions and connection lines are illustrative, not a geographic
+                projection or operational transfer routes. Risk colours come from the seeded forecast data.
             </p>
         </div>
     );
