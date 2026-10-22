@@ -1,40 +1,69 @@
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Slot } from "./slot";
+
+export type ButtonVariant =
+    | "primary"
+    | "danger"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "link"
+    | "subtle";
+export type ButtonSize = "sm" | "default" | "lg" | "xl" | "icon";
 
 export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     asChild?: boolean
-    variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | "glass"
-    size?: "default" | "sm" | "lg" | "icon"
+    variant?: ButtonVariant
+    size?: ButtonSize
 }
 
+const VARIANT_CLASSES: Record<ButtonVariant, string> = {
+    primary:
+        "bg-brand text-brand-fg shadow-sm hover:bg-brand-hover active:bg-brand-hover disabled:bg-brand/45",
+    danger:
+        "bg-danger-solid text-danger-fg shadow-sm hover:bg-danger-solid/90 active:bg-danger-solid",
+    outline:
+        "border border-line-strong bg-surface text-fg hover:bg-surface-hover hover:border-fg-subtle",
+    secondary: "bg-forest text-forest-fg hover:bg-forest-hover",
+    ghost: "text-fg-muted hover:bg-surface-hover hover:text-fg",
+    link: "text-brand-text underline-offset-4 hover:underline",
+    subtle: "bg-brand-soft text-brand-text hover:bg-brand-soft/70",
+};
+
+const SIZE_CLASSES: Record<ButtonSize, string> = {
+    sm: "h-8 gap-1.5 rounded-md px-3 text-[13px]",
+    default: "h-10 gap-2 rounded-lg px-4 text-sm",
+    lg: "h-11 gap-2 rounded-lg px-5 text-[15px]",
+    xl: "h-12 gap-2.5 rounded-lg px-6 text-base",
+    icon: "h-10 w-10 rounded-lg",
+};
+
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, variant = "default", size = "default", asChild = false, ...props }, ref) => {
+    ({ className, variant = "primary", size = "default", asChild = false, type, ...props }, ref) => {
+        const Comp = asChild ? Slot : "button";
+
         return (
-            <button
+            <Comp
+                ref={asChild ? undefined : ref}
                 className={cn(
-                    "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-                    {
-                        "bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_15px_rgba(185,28,28,0.5)]": variant === "default",
-                        "bg-destructive text-destructive-foreground hover:bg-destructive/90": variant === "destructive",
-                        "border border-input bg-background hover:bg-accent hover:text-accent-foreground": variant === "outline",
-                        "bg-secondary text-secondary-foreground hover:bg-secondary/80": variant === "secondary",
-                        "hover:bg-accent hover:text-accent-foreground": variant === "ghost",
-                        "text-primary underline-offset-4 hover:underline": variant === "link",
-                        "glass text-foreground hover:bg-white/10 dark:hover:bg-white/5": variant === "glass",
-                        "h-10 px-4 py-2": size === "default",
-                        "h-9 rounded-md px-3": size === "sm",
-                        "h-11 rounded-md px-8": size === "lg",
-                        "h-10 w-10": size === "icon",
-                    },
+                    "inline-flex select-none items-center justify-center whitespace-nowrap font-medium",
+                    "transition-[background-color,border-color,color,box-shadow,transform] duration-150",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
+                    "disabled:pointer-events-none disabled:opacity-55",
+                    "active:translate-y-px",
+                    "[&_svg]:shrink-0",
+                    VARIANT_CLASSES[variant],
+                    SIZE_CLASSES[size],
                     className
                 )}
-                ref={ref}
+                {...(asChild ? {} : { type: type ?? "button" })}
                 {...props}
             />
-        )
+        );
     }
-)
-Button.displayName = "Button"
+);
+Button.displayName = "Button";
 
-export { Button }
+export { Button };

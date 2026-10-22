@@ -1,24 +1,33 @@
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-export interface InputProps
-    extends React.InputHTMLAttributes<HTMLInputElement> { }
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    /** Marks the field as invalid and wires up aria-invalid. */
+    invalid?: boolean
+}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-    ({ className, type, ...props }, ref) => {
+    ({ className, type, invalid, ...props }, ref) => {
         return (
             <input
                 type={type}
+                aria-invalid={invalid || undefined}
                 className={cn(
-                    "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-300 dark:bg-black/40",
+                    "flex h-10 w-full rounded-lg border border-line-strong bg-surface px-3 py-2 text-sm text-fg",
+                    "placeholder:text-fg-subtle",
+                    "transition-[border-color,box-shadow] duration-150",
+                    "focus-visible:outline-none focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25",
+                    "disabled:cursor-not-allowed disabled:opacity-55 disabled:bg-surface-sunken",
+                    invalid &&
+                        "border-danger/70 focus-visible:border-danger focus-visible:ring-danger/25",
                     className
                 )}
                 ref={ref}
                 {...props}
             />
-        )
+        );
     }
-)
-Input.displayName = "Input"
+);
+Input.displayName = "Input";
 
-export { Input }
+export { Input };

@@ -10,64 +10,127 @@ const config: Config = {
     theme: {
         container: {
             center: true,
-            padding: "2rem",
+            padding: "1.5rem",
             screens: {
                 "2xl": "1400px",
             },
         },
         extend: {
+            fontFamily: {
+                sans: ["Inter", "Segoe UI", "system-ui", "-apple-system", "sans-serif"],
+                mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Consolas", "monospace"],
+            },
             colors: {
-                border: "hsl(var(--border))",
-                input: "hsl(var(--input))",
-                ring: "hsl(var(--ring))",
-                background: "hsl(var(--background))",
-                foreground: "hsl(var(--foreground))",
-                blood: {
-                    50: '#fdf3f3',
-                    100: '#fce4e4',
-                    200: '#f9cbcc',
-                    300: '#f4a6a8',
-                    400: '#ec7276',
-                    500: '#e04246',
-                    600: '#ca262a',
-                    700: '#b91c1c', // Deep Red
-                    800: '#8e1819',
-                    900: '#761a1b',
-                    950: '#400809',
+                /* ── Surfaces ───────────────────────────────────── */
+                bg: "var(--bg)",
+                surface: {
+                    DEFAULT: "var(--surface)",
+                    raised: "var(--surface-raised)",
+                    sunken: "var(--surface-sunken)",
+                    hover: "var(--surface-hover)",
                 },
+
+                /* ── Text ───────────────────────────────────────── */
+                fg: {
+                    DEFAULT: "var(--fg)",
+                    muted: "var(--fg-muted)",
+                    subtle: "var(--fg-subtle)",
+                },
+
+                /* ── Lines ──────────────────────────────────────── */
+                line: {
+                    DEFAULT: "var(--border)",
+                    strong: "var(--border-strong)",
+                },
+
+                /* ── Brand ──────────────────────────────────────── */
+                brand: {
+                    DEFAULT: "var(--brand)",
+                    hover: "var(--brand-hover)",
+                    fg: "var(--brand-fg)",
+                    text: "var(--brand-text)",
+                    soft: "var(--brand-soft)",
+                    softer: "var(--brand-softer)",
+                    border: "var(--brand-border)",
+                },
+                forest: {
+                    DEFAULT: "var(--forest)",
+                    hover: "var(--forest-hover)",
+                    fg: "var(--forest-fg)",
+                },
+                gold: "var(--gold)",
+
+                /* ── Semantic ───────────────────────────────────── */
+                success: {
+                    DEFAULT: "var(--success)",
+                    text: "var(--success-text)",
+                    solid: "var(--success-solid)",
+                    fg: "var(--success-fg)",
+                    soft: "var(--success-soft)",
+                    border: "var(--success-border)",
+                },
+                warning: {
+                    DEFAULT: "var(--warning)",
+                    text: "var(--warning-text)",
+                    solid: "var(--warning-solid)",
+                    fg: "var(--warning-fg)",
+                    soft: "var(--warning-soft)",
+                    border: "var(--warning-border)",
+                },
+                danger: {
+                    DEFAULT: "var(--danger)",
+                    text: "var(--danger-text)",
+                    solid: "var(--danger-solid)",
+                    fg: "var(--danger-fg)",
+                    soft: "var(--danger-soft)",
+                    border: "var(--danger-border)",
+                },
+                info: {
+                    DEFAULT: "var(--info)",
+                    text: "var(--info-text)",
+                    solid: "var(--info-solid)",
+                    fg: "var(--info-fg)",
+                    soft: "var(--info-soft)",
+                    border: "var(--info-border)",
+                },
+
+                /* ── Legacy aliases kept for compatibility ─────── */
+                background: "var(--bg)",
+                foreground: "var(--fg)",
+                border: "var(--border)",
+                input: "var(--border-strong)",
+                ring: "var(--ring)",
                 primary: {
-                    DEFAULT: "hsl(var(--primary))",
-                    foreground: "hsl(var(--primary-foreground))",
+                    DEFAULT: "var(--brand)",
+                    foreground: "var(--brand-fg)",
                 },
                 secondary: {
-                    DEFAULT: "hsl(var(--secondary))",
-                    foreground: "hsl(var(--secondary-foreground))",
-                },
-                destructive: {
-                    DEFAULT: "hsl(var(--destructive))",
-                    foreground: "hsl(var(--destructive-foreground))",
+                    DEFAULT: "var(--surface-raised)",
+                    foreground: "var(--fg)",
                 },
                 muted: {
-                    DEFAULT: "hsl(var(--muted))",
-                    foreground: "hsl(var(--muted-foreground))",
+                    DEFAULT: "var(--surface-sunken)",
+                    foreground: "var(--fg-muted)",
                 },
-                accent: {
-                    DEFAULT: "hsl(var(--accent))",
-                    foreground: "hsl(var(--accent-foreground))",
+                destructive: {
+                    DEFAULT: "var(--danger-solid)",
+                    foreground: "var(--danger-fg)",
                 },
                 popover: {
-                    DEFAULT: "hsl(var(--popover))",
-                    foreground: "hsl(var(--popover-foreground))",
+                    DEFAULT: "var(--surface)",
+                    foreground: "var(--fg)",
                 },
                 card: {
-                    DEFAULT: "hsl(var(--card))",
-                    foreground: "hsl(var(--card-foreground))",
+                    DEFAULT: "var(--surface)",
+                    foreground: "var(--fg)",
                 },
             },
-            backgroundImage: {
-                "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-                "gradient-conic":
-                    "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+            boxShadow: {
+                xs: "var(--shadow-xs)",
+                sm: "var(--shadow-sm)",
+                md: "var(--shadow-md)",
+                lg: "var(--shadow-lg)",
+                pop: "var(--shadow-pop)",
             },
             borderRadius: {
                 lg: "var(--radius)",
@@ -83,20 +146,10 @@ const config: Config = {
                     from: { height: "var(--radix-accordion-content-height)" },
                     to: { height: "0" },
                 },
-                "float": {
-                    "0%, 100%": { transform: "translateY(0)" },
-                    "50%": { transform: "translateY(-10px)" },
-                },
-                "float-slow": {
-                    "0%, 100%": { transform: "translateY(0)" },
-                    "50%": { transform: "translateY(-20px)" },
-                }
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
-                "float": "float 3s ease-in-out infinite",
-                "float-slow": "float-slow 6s ease-in-out infinite",
             },
         },
     },

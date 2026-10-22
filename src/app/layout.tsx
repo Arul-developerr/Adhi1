@@ -1,17 +1,25 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
-import { BackgroundParticles } from "@/components/background-particles";
-import { Loader } from "@/components/loader";
-
-const inter = Inter({ subsets: ["latin"] });
+import { ToastProvider } from "@/components/ui/toast";
 
 export const metadata: Metadata = {
-    title: "TN LifeBlood - Smart Blood Bank Management System | Tamil Nadu",
-    description: "Smart Blood Bank Management System with Automated Donor Matching for Tamil Nadu Government and Private Hospitals. AI-powered blood demand prediction, real-time inventory tracking, and emergency alert system.",
+    title: {
+        default: "TN LifeBlood — Smart Blood Bank Management | Namakkal District",
+        template: "%s · TN LifeBlood",
+    },
+    description:
+        "A blood-bank management interface for Namakkal District, Tamil Nadu: donor registration, compatibility matching, stock monitoring, emergency alerting and demand forecasting across government and private blood banks.",
+    applicationName: "TN LifeBlood",
+};
+
+export const viewport: Viewport = {
+    themeColor: [
+        { media: "(prefers-color-scheme: light)", color: "#f6f0e7" },
+        { media: "(prefers-color-scheme: dark)", color: "#111713" },
+    ],
+    width: "device-width",
+    initialScale: 1,
 };
 
 export default function RootLayout({
@@ -21,20 +29,14 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={inter.className}>
+            <body className="font-sans">
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="dark"
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <Loader />
-                    <BackgroundParticles />
-                    <Navbar />
-                    <main className="min-h-screen pt-16">
-                        {children}
-                    </main>
-                    <Footer />
+                    <ToastProvider>{children}</ToastProvider>
                 </ThemeProvider>
             </body>
         </html>
